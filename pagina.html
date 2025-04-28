@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Randomizar Todo</title>
+  <style>
+    body {
+      background-color: #f0f8ff;
+      background-size: cover;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      transition: background-color 0.5s ease, background-image 0.5s ease;
+    }
+
+    h1 {
+      color: #3366cc;
+      transition: color 0.5s ease;
+    }
+
+    button {
+      background-color: #ff6600;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 10px;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #ff8533;
+    }
+
+    #mensaje {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333333;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="titulo">¡Bienvenido!</h1>
+  <p>Haz clic en un botón para cambiar todo aleatoriamente o restaurar.</p>
+
+  <button onclick="randomizarTodo()">Randomizar Todo</button>
+  <button onclick="restaurarTodo()">Restaurar</button>
+
+  <div id="mensaje"></div>
+
+  <script>
+    const colores = ["#e6ffe6", "#ffe6e6", "#e6e6ff", "#ffffe6", "#e6f7ff", "#f9e6ff", "#f5ffe6"];
+    const textos = ["¡Hola, mundo!", "¡Sigue brillando!", "¡Hoy es un gran día!", "¡Nunca te rindas!", "¡Eres increíble!"];
+    const imagenes = [
+      "url('https://picsum.photos/seed/pic1/800/600')",
+      "url('https://picsum.photos/seed/pic2/800/600')",
+      "url('https://picsum.photos/seed/pic3/800/600')",
+      "url('https://picsum.photos/seed/pic4/800/600')"
+    ];
+
+    const colorOriginal = document.body.style.backgroundColor;
+    const tituloOriginal = document.getElementById("titulo").innerText;
+    const fondoOriginal = "";
+
+    function randomizarTodo() {
+      const colorRandom = colores[Math.floor(Math.random() * colores.length)];
+      const textoRandom = textos[Math.floor(Math.random() * textos.length)];
+      const imagenRandom = imagenes[Math.floor(Math.random() * imagenes.length)];
+
+      document.body.style.backgroundColor = colorRandom;
+      document.getElementById("titulo").innerText = textoRandom;
+      document.body.style.backgroundImage = imagenRandom;
+
+      document.getElementById("mensaje").innerHTML = `🎨 Fondo cambiado, texto cambiado y nueva imagen aplicada.`;
+    }
+
+    function restaurarTodo() {
+      document.body.style.backgroundColor = colorOriginal;
+      document.body.style.backgroundImage = fondoOriginal;
+      document.getElementById("titulo").innerText = tituloOriginal;
+
+      document.getElementById("mensaje").innerHTML = `🔄 Todo restaurado al estado original.`;
+    }
+  </script>
+</body>
+</html>
